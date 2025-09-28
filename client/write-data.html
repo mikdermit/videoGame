@@ -19,7 +19,7 @@
             </section>
             <section class="background-image">
                 <div>
-                    <form id="data-form">
+                    <form id="data-form" onSubmit="e => showAlert(e)">
                         <label for="name">Character Name:</label>
                         <input type="text" id="name" name="name" required />
 
@@ -36,6 +36,7 @@
 
                         <label for="race">Race:</label>
                         <select id="race" name="race" required>
+                            <option value=""></option>
                             <option value="Hyur">Hyur</option>
                             <option value="Elezen">Elezen</option>
                             <option value="Lalafell">Lalafell</option>
@@ -53,6 +54,7 @@
                             name="grand-company"
                             required
                         >
+                            <option value=""></option>
                             <option value="The Maelstrom">The Maelstrom</option>
                             <option value="The Immortal Flames">
                                 The Immortal Flames
@@ -68,6 +70,7 @@
                             name="preferred-role"
                             required
                         >
+                            <option value=""></option>
                             <option value="Tank">Tank</option>
                             <option value="Healer">Healer</option>
                             <option value="DPS">DPS</option>
@@ -79,6 +82,7 @@
                             name="preferred-class"
                             required
                         >
+                            <option value=""></option>
                             <option value="Gladiator">Gladiator</option>
                             <option value="Pugilist">Pugilist</option>
                             <option value="Marauder">Marauder</option>
@@ -92,6 +96,7 @@
 
                         <label for="playstyle">Playstyle:</label>
                         <select id="playstyle" name="playstyle" required>
+                            <option value=""></option>
                             <option value="Casual">Casual Raider</option>
                             <option value="Hardcore">Hardcore Raider</option>
                             <option value="Roleplayer">Roleplayer</option>
@@ -100,6 +105,7 @@
 
                         <label for="platform">Platform:</label>
                         <select id="platform" name="platform" required>
+                            <option value=""></option>
                             <option value="PC">PC</option>
                             <option value="PlayStation">PlayStation</option>
                             <option value="Mac">Mac</option>
@@ -109,10 +115,9 @@
                         <label for="comments">Comments:</label>
                         <textarea id="comments" name="comments"></textarea>
 
-                        <button type="submit">Submit</button>
-                        <button type="clear">Clear</button>
+                        <button id="submit" type="submit">Submit</button>
+                        <button id="clear" type="clear">Clear</button>
                     </form>
-                    <div id="response-message"></div>
                 </div>
             </section>
         </main>
