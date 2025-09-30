@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Hoshi Jiro",
+      "world": "Faerie",
+      "data-center": "Aether",
+      "race": "Au Ra",
+      "grand-company": "The Maelstrom",
+      "preferred-role": "Healer",
+      "preferred-class": "Conjurer",
+      "playstyle": "Casual Raider",
+      "platform": "PC",
+      "comments": "Looking for a casual raid group to join on weekends."
+    },
+    {
+      "id": 2,
+      "name": "Moon Shady",
+      "world": "Faerie",
+      "data-center": "Aether",
+      "race": "Au Ra",
+      "grand-company": "The Order of the Twin Adder",
+      "preferred-role": "DPS",
+      "preferred-class": "Rogue",
+      "playstyle": "Fashionista",
+      "platform": "PC",
+      "comments": "Looking for all the fashion and glamour."
+    },
+    {
+      "id": 3,
+      "name": "Eri Rose",
+      "world": "Gilgamesh",
+      "data-center": "Aether",
+      "race": "Lalafell",
+      "grand-company": "The Immortal Flames",
+      "preferred-role": "Tank",
+      "preferred-class": "Gladiator",
+      "playstyle": "Hardcore Raider",
+      "platform": "PC",
+      "comments": "Looking for a hardcore raid group to join on weekends."
+    },
+    {
+      "id": 4,
+      "name": "Alice Smith",
+      "world": "Kraken",
+      "data-center": "Dynamis",
+      "race": "Hyur",
+      "grand-company": "The Maelstrom",
+      "preferred-role": "DPS",
+      "preferred-class": "Thamaturge",
+      "playstyle": "Roleplayer",
+      "platform": "PC",
+      "comments": "Looking for a group to roleplay with."
+    },
+   {
+      "id": 5,
+      "name": "Gera Riv",
+      "world": "Lamia",
+      "data-center": "Primal",
+      "race": "Elezen",
+      "grand-company": "The Order of the Twin Adder",
+      "preferred-role": "Healer",
+      "preferred-class": "Conjurer",
+      "playstyle": "Casual Raider",
+      "platform": "PC",
+      "comments": "Looking for a casual raid group to join on weekends."
+    }
+  ]
+}
