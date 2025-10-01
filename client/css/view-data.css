@@ -41,3 +41,27 @@ body {
     text-align: center;;
 }
 
+#table-container {
+    background-color: white;
+    padding: 20px;
+}
+
+#dataTable {
+    text-align: center;
+}
+
+.table-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.comment-box {
+    text-wrap: wrap;
+}
+
+

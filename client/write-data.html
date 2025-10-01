@@ -21,21 +21,20 @@
                 <div>
                     <form id="data-form" onSubmit="e => showAlert(e)">
                         <label for="name">Character Name:</label>
-                        <input type="text" id="name" name="name" required />
+                        <input type="text" id="name" name="name" />
 
                         <label for="world">World:</label>
-                        <input type="text" id="world" name="world" required />
+                        <input type="text" id="world" name="world" />
 
-                        <label for="data-center">Data Center:</label>
+                        <label for="dataCenter">Data Center:</label>
                         <input
                             type="text"
-                            id="data-center"
-                            name="data-center"
-                            required
+                            id="dataCenter"
+                            name="dataCenter"
                         />
 
                         <label for="race">Race:</label>
-                        <select id="race" name="race" required>
+                        <select id="race" name="race">
                             <option value=""></option>
                             <option value="Hyur">Hyur</option>
                             <option value="Elezen">Elezen</option>
@@ -47,12 +46,11 @@
                             <option value="Viera">Viera</option>
                         </select>
 
-                        <label for="grand-company">Grand Company:</label>
+                        <label for="grandCompany">Grand Company:</label>
                         <select
                             type="text"
-                            id="grand-company"
-                            name="grand-company"
-                            required
+                            id="grandCompany"
+                            name="grandCompany"
                         >
                             <option value=""></option>
                             <option value="The Maelstrom">The Maelstrom</option>
@@ -68,7 +66,6 @@
                         <select
                             id="preferred-role"
                             name="preferred-role"
-                            required
                         >
                             <option value=""></option>
                             <option value="Tank">Tank</option>
@@ -80,7 +77,6 @@
                         <select
                             id="preferred-class"
                             name="preferred-class"
-                            required
                         >
                             <option value=""></option>
                             <option value="Gladiator">Gladiator</option>
@@ -95,7 +91,7 @@
                         </select>
 
                         <label for="playstyle">Playstyle:</label>
-                        <select id="playstyle" name="playstyle" required>
+                        <select id="playstyle" name="playstyle">
                             <option value=""></option>
                             <option value="Casual">Casual Raider</option>
                             <option value="Hardcore">Hardcore Raider</option>
@@ -104,7 +100,7 @@
                         </select>
 
                         <label for="platform">Platform:</label>
-                        <select id="platform" name="platform" required>
+                        <select id="platform" name="platform">
                             <option value=""></option>
                             <option value="PC">PC</option>
                             <option value="PlayStation">PlayStation</option>
