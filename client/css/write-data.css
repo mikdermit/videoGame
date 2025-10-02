@@ -40,3 +40,24 @@ body {
     justify-content: center;
     text-align: center;;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+

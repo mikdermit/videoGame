@@ -98,7 +98,7 @@ htmlString += `<tr><td>${user.id}</td>
                     <td>${user.preferredClass}</td>
                     <td>${user.playstyle}</td>
                     <td>${user.platform}</td>
-                    <td>${user.comments}</td></tr>`
+                    <td class="comment-box">${user.comments}</td></tr>`
 });
 
 tableObj.innerHTML = htmlString;

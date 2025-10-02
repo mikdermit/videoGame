@@ -20,99 +20,111 @@
             <section class="background-image">
                 <div>
                     <form id="data-form" onSubmit="e => showAlert(e)">
-                        <label for="name">Character Name:</label>
-                        <input type="text" id="name" name="name" />
-
-                        <label for="world">World:</label>
-                        <input type="text" id="world" name="world" />
-
-                        <label for="dataCenter">Data Center:</label>
-                        <input
-                            type="text"
-                            id="dataCenter"
-                            name="dataCenter"
-                        />
-
-                        <label for="race">Race:</label>
-                        <select id="race" name="race">
-                            <option value=""></option>
-                            <option value="Hyur">Hyur</option>
-                            <option value="Elezen">Elezen</option>
-                            <option value="Lalafell">Lalafell</option>
-                            <option value="Miqo'te">Miqo'te</option>
-                            <option value="Roegadyn">Roegadyn</option>
-                            <option value="Au Ra">Au Ra</option>
-                            <option value="Hrothgar">Hrothgar</option>
-                            <option value="Viera">Viera</option>
-                        </select>
-
-                        <label for="grandCompany">Grand Company:</label>
-                        <select
-                            type="text"
-                            id="grandCompany"
-                            name="grandCompany"
-                        >
-                            <option value=""></option>
-                            <option value="The Maelstrom">The Maelstrom</option>
-                            <option value="The Immortal Flames">
-                                The Immortal Flames
-                            </option>
-                            <option value="The Order of the Twin Adder">
-                                The Order of the Twin Adder
-                            </option>
-                        </select>
-
-                        <label for="preferred-role">Preferred Role:</label>
-                        <select
-                            id="preferred-role"
-                            name="preferred-role"
-                        >
-                            <option value=""></option>
-                            <option value="Tank">Tank</option>
-                            <option value="Healer">Healer</option>
-                            <option value="DPS">DPS</option>
-                        </select>
-
-                        <label for="preferred-class">Preferred Class:</label>
-                        <select
-                            id="preferred-class"
-                            name="preferred-class"
-                        >
-                            <option value=""></option>
-                            <option value="Gladiator">Gladiator</option>
-                            <option value="Pugilist">Pugilist</option>
-                            <option value="Marauder">Marauder</option>
-                            <option value="Lancer">Lancer</option>
-                            <option value="Archer">Archer</option>
-                            <option value="Rogue">Rogue</option>
-                            <option value="Conjurer">Conjuror</option>
-                            <option value="Thamaturge">Thamaturge</option>
-                            <option value="Arcanist">Arcanist</option>
-                        </select>
-
-                        <label for="playstyle">Playstyle:</label>
-                        <select id="playstyle" name="playstyle">
-                            <option value=""></option>
-                            <option value="Casual">Casual Raider</option>
-                            <option value="Hardcore">Hardcore Raider</option>
-                            <option value="Roleplayer">Roleplayer</option>
-                            <option value="Fashionista">Fashionista</option>
-                        </select>
-
-                        <label for="platform">Platform:</label>
-                        <select id="platform" name="platform">
-                            <option value=""></option>
-                            <option value="PC">PC</option>
-                            <option value="PlayStation">PlayStation</option>
-                            <option value="Mac">Mac</option>
-                            <option value="Xbox">Xbox</option>
-                        </select>
-
-                        <label for="comments">Comments:</label>
-                        <textarea id="comments" name="comments"></textarea>
-
-                        <button id="submit" type="submit">Submit</button>
-                        <button id="clear" type="clear">Clear</button>
+                        <fieldset>
+                            <label for="name">Character Name:</label>
+                            <input type="text" id="name" name="name" />
+                        </fieldset>
+                        <fieldset>
+                            <label for="world">World:</label>
+                            <input type="text" id="world" name="world" />
+                        </fieldset>  
+                        <fieldset>
+                            <label for="dataCenter">Data Center:</label>
+                            <input
+                                type="text"
+                                id="dataCenter"
+                                name="dataCenter"
+                            />
+                        </fieldset>
+                        <fieldset>
+                            <label for="race">Race:</label>
+                            <select id="race" name="race">
+                                <option value=""></option>
+                                <option value="Hyur">Hyur</option>
+                                <option value="Elezen">Elezen</option>
+                                <option value="Lalafell">Lalafell</option>
+                                <option value="Miqo'te">Miqo'te</option>
+                                <option value="Roegadyn">Roegadyn</option>
+                                <option value="Au Ra">Au Ra</option>
+                                <option value="Hrothgar">Hrothgar</option>
+                                <option value="Viera">Viera</option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <label for="grandCompany">Grand Company:</label>
+                            <select
+                                type="text"
+                                id="grandCompany"
+                                name="grandCompany"
+                            >
+                                <option value=""></option>
+                                <option value="The Maelstrom">The Maelstrom</option>
+                                <option value="The Immortal Flames">
+                                    The Immortal Flames
+                                </option>
+                                <option value="The Order of the Twin Adder">
+                                    The Order of the Twin Adder
+                                </option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <label for="preferred-role">Preferred Role:</label>
+                            <select
+                                id="preferred-role"
+                                name="preferred-role"
+                            >
+                                <option value=""></option>
+                                <option value="Tank">Tank</option>
+                                <option value="Healer">Healer</option>
+                                <option value="DPS">DPS</option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <label for="preferred-class">Preferred Class:</label>
+                            <select
+                                id="preferred-class"
+                                name="preferred-class"
+                            >
+                                <option value=""></option>
+                                <option value="Gladiator">Gladiator</option>
+                                <option value="Pugilist">Pugilist</option>
+                                <option value="Marauder">Marauder</option>
+                                <option value="Lancer">Lancer</option>
+                                <option value="Archer">Archer</option>
+                                <option value="Rogue">Rogue</option>
+                                <option value="Conjurer">Conjuror</option>
+                                <option value="Thamaturge">Thamaturge</option>
+                                <option value="Arcanist">Arcanist</option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <label for="playstyle">Playstyle:</label>
+                            <select id="playstyle" name="playstyle">
+                                <option value=""></option>
+                                <option value="Casual">Casual Raider</option>
+                                <option value="Hardcore">Hardcore Raider</option>
+                                <option value="Roleplayer">Roleplayer</option>
+                                <option value="Fashionista">Fashionista</option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <label for="platform">Platform:</label>
+                            <select id="platform" name="platform">
+                                <option value=""></option>
+                                <option value="PC">PC</option>
+                                <option value="PlayStation">PlayStation</option>
+                                <option value="Mac">Mac</option>
+                                <option value="Xbox">Xbox</option>
+                            </select>
+                        </fieldset>
+                        <fieldset>
+                            <label for="comments">Comments:</label>
+                            <textarea id="comments" name="comments"></textarea>
+                        </fieldset>
+                        <div clas="button-container">
+                            <button id="submit" type="submit">Submit</button>
+                            <button id="clear" type="clear">Clear</button>
+                        </div>
                     </form>
                 </div>
             </section>
