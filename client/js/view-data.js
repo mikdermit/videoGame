@@ -71,10 +71,11 @@ const jsonString = `{
 const data = JSON.parse(jsonString);
 
 let tableObj = document.getElementById("dataTable");
-let htmlString = "";
 const cols = 11;
 
-htmlString += `<tr><td class="table-title">ID</td>
+function populateTable (data) {
+  let htmlString = "";
+  htmlString += `<tr><td class="table-title">ID</td>
                     <td class="table-title">Name</td>
                     <td class="table-title">World</td>
                     <td class="table-title">Data Center</td>
@@ -86,19 +87,20 @@ htmlString += `<tr><td class="table-title">ID</td>
                     <td class="table-title">Platform</td>
                     <td class="table-title">Comments</td></tr>`
 
+  data.users.forEach(user => {
+    htmlString += `<tr><td>${user.id}</td>
+                   <td>${user.name}</td>
+                   <td>${user.world}</td>
+                   <td>${user.dataCenter}</td>
+                   <td>${user.race}</td>
+                   <td>${user.grandCompany}</td>
+                   <td>${user.preferredRole}</td>
+                   <td>${user.preferredClass}</td>
+                   <td>${user.playstyle}</td>
+                   <td>${user.platform}</td>
+                   <td class="comment-box">${user.comments}</td></tr>`
+  });
+  tableObj.innerHTML = htmlString;
+}
 
-data.users.forEach(user => {
-htmlString += `<tr><td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.world}</td>
-                    <td>${user.dataCenter}</td>
-                    <td>${user.race}</td>
-                    <td>${user.grandCompany}</td>
-                    <td>${user.preferredRole}</td>
-                    <td>${user.preferredClass}</td>
-                    <td>${user.playstyle}</td>
-                    <td>${user.platform}</td>
-                    <td class="comment-box">${user.comments}</td></tr>`
-});
-
-tableObj.innerHTML = htmlString;
+populateTable(data);
