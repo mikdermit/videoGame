@@ -11,7 +11,7 @@ const jsonString = `{
       "preferredClass": "Conjurer",
       "playstyle": "Casual Raider",
       "platform": "PC",
-      "comments": "Looking for a casual raid group to join on weekends."
+      "comment": "Looking for a casual raid group to join on weekends."
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@ const jsonString = `{
       "preferredClass": "Rogue",
       "playstyle": "Fashionista",
       "platform": "PC",
-      "comments": "Looking for all the fashion and glamour."
+      "comment": "Looking for all the fashion and glamour."
     },
     {
       "id": 3,
@@ -37,7 +37,7 @@ const jsonString = `{
       "preferredClass": "Gladiator",
       "playstyle": "Hardcore Raider",
       "platform": "PC",
-      "comments": "Looking for a hardcore raid group to join on weekends."
+      "comment": "Looking for a hardcore raid group to join on weekends."
     },
     {
       "id": 4,
@@ -50,7 +50,7 @@ const jsonString = `{
       "preferredClass": "Thamaturge",
       "playstyle": "Roleplayer",
       "platform": "PC",
-      "comments": "Looking for a group to roleplay with."
+      "comment": "Looking for a group to roleplay with."
     },
    {
       "id": 5,
@@ -63,7 +63,7 @@ const jsonString = `{
       "preferredClass": "Conjurer",
       "playstyle": "Casual Raider",
       "platform": "PC",
-      "comments": "Looking for a casual raid group to join on weekends."
+      "comment": "Looking for a casual raid group to join on weekends."
     }
   ]
 }`;
@@ -75,17 +75,6 @@ const cols = 11;
 
 function populateTable (data) {
   let htmlString = "";
-  htmlString += `<tr><td class="table-title">ID</td>
-                    <td class="table-title">Name</td>
-                    <td class="table-title">World</td>
-                    <td class="table-title">Data Center</td>
-                    <td class="table-title">Race</td>
-                    <td class="table-title">Grand Company</td>
-                    <td class="table-title">Preferred Role</td>
-                    <td class="table-title">Preferred Class</td>
-                    <td class="table-title">Playstyle</td>
-                    <td class="table-title">Platform</td>
-                    <td class="table-title">Comments</td></tr>`
 
   data.users.forEach(user => {
     htmlString += `<tr><td>${user.id}</td>
@@ -98,8 +87,9 @@ function populateTable (data) {
                    <td>${user.preferredClass}</td>
                    <td>${user.playstyle}</td>
                    <td>${user.platform}</td>
-                   <td class="comment-box">${user.comments}</td></tr>`
+                   <td class="comment-box">${user.comment}</td></tr>`
   });
+  
   tableObj.innerHTML = htmlString;
 }
 

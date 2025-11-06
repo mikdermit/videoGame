@@ -44,9 +44,10 @@ body {
 #table-container {
     background-color: white;
     padding: 20px;
+     text-align: center;
 }
 
-#dataTable {
+table {
     text-align: center;
 }
 

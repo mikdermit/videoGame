@@ -1,8 +1,9 @@
 <html>
     <head>
         <title>Input Data</title>
-        <link rel="stylesheet" href="./css/write-data.css" />
-        <script src="./js/write-data.js"></script>
+        <link rel="stylesheet" type="text/css" href="/client/css/write-data.css" />
+        <script src="/client/js/config.js"></script>
+        <script src="/client/js/write-data.js" async></script>
     </head>
 
     <body>
@@ -11,15 +12,15 @@
                 <div class="title">Input Data</div>
 
                 <div class="link-container">
-                    <a class="link" href="./videoGame.html">Home</a>
-                    <a class="link" href="./write-data.html">Enter Data</a>
-                    <a class="link" href="./view-data.html">View Data</a>
+                    <a class="link" href="/">Home</a>
+                    <a class="link" href="/write-data">Enter Data</a>
+                    <a class="link" href="/view-data">View Data</a>
                     <a class="link" href="">Browse Data</a>
                 </div>
             </section>
             <section class="background-image">
                 <div>
-                    <form id="data-form" onSubmit="e => showAlert(e)">
+                    <form id="data-form">
                         <fieldset>
                             <label for="name">Character Name:</label>
                             <input type="text" id="name" name="name" />
@@ -68,10 +69,10 @@
                             </select>
                         </fieldset>
                         <fieldset>
-                            <label for="preferred-role">Preferred Role:</label>
+                            <label for="preferredRole">Preferred Role:</label>
                             <select
-                                id="preferred-role"
-                                name="preferred-role"
+                                id="preferredRole"
+                                name="preferredRole"
                             >
                                 <option value=""></option>
                                 <option value="Tank">Tank</option>
@@ -80,10 +81,10 @@
                             </select>
                         </fieldset>
                         <fieldset>
-                            <label for="preferred-class">Preferred Class:</label>
+                            <label for="preferredClass">Preferred Class:</label>
                             <select
-                                id="preferred-class"
-                                name="preferred-class"
+                                id="preferredClass"
+                                name="preferredClass"
                             >
                                 <option value=""></option>
                                 <option value="Gladiator">Gladiator</option>
@@ -118,8 +119,8 @@
                             </select>
                         </fieldset>
                         <fieldset>
-                            <label for="comments">Comments:</label>
-                            <textarea id="comments" name="comments"></textarea>
+                            <label for="comment">Comment:</label>
+                            <textarea id="comment" name="comment"></textarea>
                         </fieldset>
                         <div clas="button-container">
                             <button id="submit" type="submit">Submit</button>

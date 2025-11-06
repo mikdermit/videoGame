@@ -1,8 +1,8 @@
 <html>
     <head>
         <title>View Data</title>
-        <link rel="stylesheet" href="./css/view-data.css" />
-        
+        <link rel="stylesheet" type="text/css" href="/client/css/view-data.css" />
+        <script src="/client/js/view-data.js" async></script>
     </head>
 
     <body>
@@ -11,18 +11,32 @@
                 <div class="title">View Data</div>
 
                 <div class="link-container">
-                    <a class="link" href="./videoGame.html">Home</a>
-                    <a class="link" href="./write-data.html">Enter Data</a>
-                    <a class="link" href="./view-data.html">View Data</a>
+                    <a class="link" href="/">Home</a>
+                    <a class="link" href="/write-data">Enter Data</a>
+                    <a class="link" href="/view-data">View Data</a>
                     <a class="link" href="">Browse Data</a>
                 </div>
             </section>
             <section class="background-image">
                 <div id="table-container">
-                    <table id="dataTable"></table>
+                    <table>
+                        <th class="table-title">ID</th>
+                        <th class="table-title">Name</th>
+                        <th class="table-title">World</th>
+                        <th class="table-title">Data Center</th>
+                        <th class="table-title">Race</th>
+                        <th class="table-title">Grand Company</th>
+                        <th class="table-title">Preferred Role</th>
+                        <th class="table-title">Preferred Class</th>
+                        <th class="table-title">Playstyle</th>
+                        <th class="table-title">Platform</th>
+                        <th class="table-title">Comment</th>
+                        <tbody id="dataTable">
+
+                        </tbody>
+                    </table>
                 </div>
             </section>
         </main>
-        <script src="./js/view-data.js"></script>
     </body>
 </html>
