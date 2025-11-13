@@ -44,11 +44,14 @@ body {
 #table-container {
     background-color: white;
     padding: 20px;
-     text-align: center;
+    text-align: center;
+    width: 75%;
 }
 
 table {
     text-align: center;
+    width: 100%;
+
 }
 
 .table-title {

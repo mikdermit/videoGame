@@ -1,20 +1,31 @@
-const submitButton = document.getElementById('submit');
-submitButton.addEventListener('click', function (e) {
+const submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", function (e) {
     e.preventDefault();
 
-    let name = document.getElementById('name').value;
-    let world = document.getElementById('world').value;
-    let dataCenter = document.getElementById('dataCenter').value;
-    let race = document.getElementById('race').value;
-    let grandCompany = document.getElementById('grandCompany').value;
-    let preferredRole = document.getElementById('preferredRole').value;
-    let preferredClass = document.getElementById('preferredClass').value;
-    let playstyle = document.getElementById('playstyle').value;
-    let platform = document.getElementById('platform').value;
-    let comment = document.getElementById('comment').value;
+    let name = document.getElementById("name").value;
+    let world = document.getElementById("world").value;
+    let dataCenter = document.getElementById("dataCenter").value;
+    let race = document.getElementById("race").value;
+    let grandCompany = document.getElementById("grandCompany").value;
+    let preferredRole = document.getElementById("preferredRole").value;
+    let preferredClass = document.getElementById("preferredClass").value;
+    let playstyle = document.getElementById("playstyle").value;
+    let platform = document.getElementById("platform").value;
+    let comment = document.getElementById("comment").value;
 
-    if ( !name || !world || !dataCenter || !race || !grandCompany || !preferredRole || !preferredClass || !playstyle || !platform || !comment) {
-        alert('Please fill in all fields before submitting.');
+    if (
+        !name ||
+        !world ||
+        !dataCenter ||
+        !race ||
+        !grandCompany ||
+        !preferredRole ||
+        !preferredClass ||
+        !playstyle ||
+        !platform ||
+        !comment
+    ) {
+        alert("Please fill in all fields before submitting.");
         return;
     }
 
@@ -29,30 +40,29 @@ submitButton.addEventListener('click', function (e) {
         playstyle: playstyle,
         platform: platform,
         comment: comment
-    }
+    };
 
-    fetch(libraryUrl + '/write-character', {
-        method: 'POST',
+    fetch(libraryUrl + "/write-character", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(jsonObj)
     })
-    .then(res => {
-        if(!res.ok) throw new Error(`Network Error: ${res.statusText}`)
-        return res.json();
-    
-    })
-    .then(data => {
-        alert(data.msg);
-        console.log(data);
-        if (data.msg === 'SUCCESS') document.getElementById('clear').click();
-    })
-    .catch(err => alert(`Error: ${err}`))
+        .then(res => {
+            if (!res.ok) throw new Error(`Network Error: ${res.statusText}`);
+            return res.json();
+        })
+        .then(data => {
+            alert(data.msg);
+            if (data.msg === "SUCCESS")
+                document.getElementById("clear").click();
+        })
+        .catch(err => alert(`Error: ${err}`));
 });
 
-const clearButton = document.getElementById('clear');
-clearButton.addEventListener('click', function (e) {
-    e.preventDefault(); 
-    document.getElementById('data-form').reset();
+const clearButton = document.getElementById("clear");
+clearButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("data-form").reset();
 });
