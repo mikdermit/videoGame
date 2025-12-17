@@ -1,103 +1,300 @@
-const fs = require("fs");
-const path = require("path");
-const db_file = path.join(__dirname + "/files/data.txt");
+//Bring in Mongo
+const { MongoClient, ObjectId } = require("mongodb");
+const characterData = require("./files/data.json");
+//Define Database URL
+const dbURL = "mongodb://127.0.0.1";
+const dbName = "charLibrary";
+//Define the database server
+const client = new MongoClient(dbURL);
 
 let services = function (app) {
-    app.post("/write-character", function (req, res) {
-        let id = "lib" + Date.now();
+    app.post("/write-character", async function (req, res) {
+        //1.  Bring in the data from the client
+        let nameSentFromClient = req.body.name;
+        let worldSentFromClient = req.body.world;
+        let dataCenterSentFromClient = req.body.dataCenter;
+        let raceSentFromClient = req.body.race;
+        let grandCompanySentFromClient = req.body.grandCompany;
+        let preferredRoleSentFromClient = req.body.preferredRole;
+        let preferredClassSentFromClient = req.body.preferredClass;
+        let playstyleSentFromClient = req.body.playstyle;
+        let platformSentFromClient = req.body.platform;
+        let commentSentFromClient = req.body.comment;
 
-        let characterData = {
-            id: id,
-            name: req.body.name,
-            world: req.body.world,
-            dataCenter: req.body.dataCenter,
-            race: req.body.race,
-            grandCompany: req.body.grandCompany,
-            preferredRole: req.body.preferredRole,
-            preferredClass: req.body.preferredClass,
-            playstyle: req.body.playstyle,
-            platform: req.body.platform,
-            comment: req.body.comment
+        //2. Create JSON with data to be inserted
+        let newChar = {
+            name: nameSentFromClient,
+            world: worldSentFromClient,
+            dataCenter: dataCenterSentFromClient,
+            race: raceSentFromClient,
+            grandCompany: grandCompanySentFromClient,
+            preferredRole: preferredRoleSentFromClient,
+            preferredClass: preferredClassSentFromClient,
+            playstyle: playstyleSentFromClient,
+            platform: platformSentFromClient,
+            comment: commentSentFromClient
         };
 
-        let libraryData = [];
+        //3.  Connect and insert data, close database, return success or failure
+        try {
+            const connection = await client.connect();
+            const db = connection.db(dbName);
+            const collection = db.collection("characters");
 
-        if (fs.existsSync(db_file)) {
-            fs.readFile(db_file, "utf8", function (err, data) {
-                if (err) res.send(JSON.stringify({ msg: err }));
-                else {
-                    libraryData = JSON.parse(data);
+            await collection.insertOne(newChar);
 
-                    libraryData.push(characterData);
-
-                    fs.writeFile(
-                        db_file,
-                        JSON.stringify(libraryData),
-                        function (err) {
-                            if (err)
-                                res.send(
-                                    JSON.stringify({ msg: `Error: ${err}` })
-                                );
-                            else res.send(JSON.stringify({ msg: "SUCCESS" }));
-                        }
-                    );
-                }
-            });
-        } else {
-            libraryData.push(characterData);
-            fs.writeFile(db_file, JSON.stringify(libraryData), function (err) {
-                if (err) res.send(JSON.stringify({ msg: `Error: ${err}` }));
-                else res.send(JSON.stringify({ msg: "SUCCESS" }));
-            });
+            await connection.close();
+            return res.json({ msg: "SUCCESS" });
+        } catch (err) {
+            return res.json({ msg: `Error: ${err}` });
         }
     });
 
-    app.get("/get-characters", function (req, res) {
-        if (fs.existsSync(db_file)) {
-            fs.readFile(db_file, "utf8", function (err, data) {
-                if (err) res.json({ msg: err });
-                else {
-                    let libraryData = JSON.parse(data);
-                    res.json({ msg: "SUCCESS", data: libraryData });
-                }
-            });
-        } else {
-            characterData = [];
-            res.json({ msg: "SUCCESS", data: libraryData });
+    app.get("/get-characters", async function (req, res) {
+        //No data needed from client
+        //1. Set up sort by name ascending
+        const orderBy = { name: 1 };
+        //2.  Connect, find data, close database, return results or error
+        try {
+            const connection = await client.connect();
+            const db = connection.db(dbName);
+            const collection = db.collection("characters");
+
+            const chars = await collection.find().sort(orderBy).toArray();
+
+            await connection.close();
+            return res.json({ msg: "SUCCESS", data: chars });
+        } catch (err) {
+            return res.json({ msg: `Error: ${err}` });
         }
     });
-    app.delete("/delete-character", function (req, res) {
-        const id = req.body.id;
-        if (fs.existsSync(db_file)) {
-            fs.readFile(db_file, "utf8", function (err, data) {
-                if (err) res.json({ msg: err });
-                else {
-                    let libraryData = JSON.parse(data);
-                    libraryData = libraryData.filter(char => char.id !== id);
-                    fs.writeFile(
-                        db_file,
-                        JSON.stringify(libraryData),
-                        function (err) {
-                            if (err)
-                                res.send(
-                                    JSON.stringify({ msg: `Error: ${err}` })
-                                );
-                            else
-                                res.send(
-                                    JSON.stringify({
-                                        msg: "SUCCESS",
-                                        data: libraryData
-                                    })
-                                );
-                        }
-                    );
-                }
-            });
-        } else {
-            characterData = [];
-            res.json({ msg: "SUCCESS", data: libraryData });
+
+    app.put("/update-character", async function (req, res) {
+        //1.  Bring in the data from the client (see spellsTable.js, line 96 for JSON object names)
+        let idSentFromClient = req.body.id;
+        let nameSentFromClient = req.body.name;
+        let worldSentFromClient = req.body.world;
+        let dataCenterSentFromClient = req.body.dataCenter;
+        let raceSentFromClient = req.body.race;
+        let grandCompanySentFromClient = req.body.grandCompany;
+        let preferredRoleSentFromClient = req.body.preferredRole;
+        let preferredClassSentFromClient = req.body.preferredClass;
+        let playstyleSentFromClient = req.body.playstyle;
+        let platformSentFromClient = req.body.platform;
+        let commentSentFromClient = req.body.comment;
+
+        //2. Create JSON with the data sent
+        let updatedData = {
+            $set: {
+                name: nameSentFromClient,
+                world: worldSentFromClient,
+                dataCenter: dataCenterSentFromClient,
+                race: raceSentFromClient,
+                grandCompany: grandCompanySentFromClient,
+                preferredRole: preferredRoleSentFromClient,
+                preferredClass: preferredClassSentFromClient,
+                playstyle: playstyleSentFromClient,
+                platform: platformSentFromClient,
+                comment: commentSentFromClient
+            }
+        };
+        //3. Convert id string to a MongoID object
+        let idAsMongoObject = ObjectId.createFromHexString(idSentFromClient);
+        //4. Create search with MongoID
+        const search = { id: idAsMongoObject };
+        //5.  Connect and update data, close database, return success or failure
+        try {
+            const connection = await client.connect();
+            const db = connection.db(dbName);
+            const collection = db.collection("characters");
+
+            await collection.updateOne(search, updatedData);
+
+            await connection.close();
+            return res.json({ msg: "SUCCESS" });
+        } catch (err) {
+            return res.json({ msg: `Error: ${err}` });
+        }
+    });
+
+    app.get("/get-charsByType", async function (req, res) {
+        //1.  Capture data sent from client (see line 34 in spellsTable.js for JSON object name)
+        let typeValueSentFromClient = req.query.type;
+
+        //2.  Filter by the data value sent from the client.
+        //       Note: type = "", is sent when ALL is selected.
+        let search =
+            typeValueSentFromClient === ""
+                ? {}
+                : { type: typeValueSentFromClient };
+
+        //3. Set up sort by name ascending
+        const orderBy = { name: 1 };
+        //4.  Connect, find data, close database, return results or error
+        try {
+            const connection = await client.connect();
+            const db = connection.db(dbName);
+            const collection = db.collection("characters");
+
+            const chars = await collection.find(search).sort(orderBy).toArray();
+
+            await connection.close();
+            return res.json({ msg: "SUCCESS", data: chars });
+        } catch (err) {
+            return res.json({ msg: `Error: ${err}` });
+        }
+    });
+
+    app.delete("/delete-character", async function (req, res) {
+        //1.  Bring in the data from the client (see spellsTable.js, line 54 for JSON object name)
+        let idSentFromClient = req.query.id;
+
+        //2. Convert id string to a MongoID object
+        let idAsMongoObject = ObjectId.createFromHexString(idSentFromClient);
+        //3. Create search with MongoID
+        const search = { id: idAsMongoObject };
+        //4.  Connect and delete data, close database, return success or failure
+        try {
+            const connection = await client.connect();
+            const db = connection.db(dbName);
+            const collection = db.collection("characters");
+
+            await collection.deleteOne(search);
+
+            await connection.close();
+            return res.json({ msg: "SUCCESS" });
+        } catch (err) {
+            return res.json({ msg: `Error: ${err}` });
         }
     });
 };
 
-module.exports = services;
+var initializeDatabase = async function () {
+    try {
+        const conn = await client.connect();
+        const db = conn.db(dbName);
+        const coll = db.collection("characters");
+
+        // Create unique index on name
+        await coll.createIndex({ name: 1 }, { unique: true });
+
+        const data = await coll.find().toArray();
+
+        if (data.length === 0) {
+            var characters = [...characterData];
+            characters.reverse();
+            await coll.insertMany(characters);
+            console.log("Added seed records");
+        }
+
+        await conn.close();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+module.exports = { services, initializeDatabase };
+
+// const fs = require("fs");
+// const path = require("path");
+// const db_file = path.join(__dirname + "/files/data.txt");
+
+// let services = function (app) {
+//     app.post("/write-character", function (req, res) {
+//         let id = "lib" + Date.now();
+
+//         let characterData = {
+//             id: id,
+//             name: req.body.name,
+//             world: req.body.world,
+//             dataCenter: req.body.dataCenter,
+//             race: req.body.race,
+//             grandCompany: req.body.grandCompany,
+//             preferredRole: req.body.preferredRole,
+//             preferredClass: req.body.preferredClass,
+//             playstyle: req.body.playstyle,
+//             platform: req.body.platform,
+//             comment: req.body.comment
+//         };
+
+//         let libraryData = [];
+
+//         if (fs.existsSync(db_file)) {
+//             fs.readFile(db_file, "utf8", function (err, data) {
+//                 if (err) res.send(JSON.stringify({ msg: err }));
+//                 else {
+//                     libraryData = JSON.parse(data);
+
+//                     libraryData.push(characterData);
+
+//                     fs.writeFile(
+//                         db_file,
+//                         JSON.stringify(libraryData),
+//                         function (err) {
+//                             if (err)
+//                                 res.send(
+//                                     JSON.stringify({ msg: `Error: ${err}` })
+//                                 );
+//                             else res.send(JSON.stringify({ msg: "SUCCESS" }));
+//                         }
+//                     );
+//                 }
+//             });
+//         } else {
+//             libraryData.push(characterData);
+//             fs.writeFile(db_file, JSON.stringify(libraryData), function (err) {
+//                 if (err) res.send(JSON.stringify({ msg: `Error: ${err}` }));
+//                 else res.send(JSON.stringify({ msg: "SUCCESS" }));
+//             });
+//         }
+//     });
+
+//     app.get("/get-characters", function (req, res) {
+//         if (fs.existsSync(db_file)) {
+//             fs.readFile(db_file, "utf8", function (err, data) {
+//                 if (err) res.json({ msg: err });
+//                 else {
+//                     let libraryData = JSON.parse(data);
+//                     res.json({ msg: "SUCCESS", data: libraryData });
+//                 }
+//             });
+//         } else {
+//             characterData = [];
+//             res.json({ msg: "SUCCESS", data: libraryData });
+//         }
+//     });
+//     app.delete("/delete-character", function (req, res) {
+//         const id = req.body.id;
+//         if (fs.existsSync(db_file)) {
+//             fs.readFile(db_file, "utf8", function (err, data) {
+//                 if (err) res.json({ msg: err });
+//                 else {
+//                     let libraryData = JSON.parse(data);
+//                     libraryData = libraryData.filter(char => char.id !== id);
+//                     fs.writeFile(
+//                         db_file,
+//                         JSON.stringify(libraryData),
+//                         function (err) {
+//                             if (err)
+//                                 res.send(
+//                                     JSON.stringify({ msg: `Error: ${err}` })
+//                                 );
+//                             else
+//                                 res.send(
+//                                     JSON.stringify({
+//                                         msg: "SUCCESS",
+//                                         data: libraryData
+//                                     })
+//                                 );
+//                         }
+//                     );
+//                 }
+//             });
+//         } else {
+//             characterData = [];
+//             res.json({ msg: "SUCCESS", data: libraryData });
+//         }
+//     });
+// };
+
+// module.exports = services;

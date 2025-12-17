@@ -12,12 +12,17 @@ app.use("/client", express.static(path.resolve(__dirname + "/../client/")));
 
 const PORT = 5000;
 
+let server;
 let router = require("./router.js");
 router(app);
 
 let services = require("./services.js");
-services(app);
+services.services(app);
+services.initializeDatabase();
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
+server = app.listen(PORT, function (err) {
+    if (err) {
+        throw err;
+    }
+    console.log("Listening on port " + PORT);
 });
