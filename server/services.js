@@ -48,7 +48,6 @@ let services = function (app) {
             fs.writeFile(db_file, JSON.stringify(libraryData), function (err) {
                 if (err) res.send(JSON.stringify({ msg: `Error: ${err}` }));
                 else res.send(JSON.stringify({ msg: "SUCCESS" }));
-                console.log("File created");
             });
         }
     });
@@ -60,6 +59,38 @@ let services = function (app) {
                 else {
                     let libraryData = JSON.parse(data);
                     res.json({ msg: "SUCCESS", data: libraryData });
+                }
+            });
+        } else {
+            characterData = [];
+            res.json({ msg: "SUCCESS", data: libraryData });
+        }
+    });
+    app.delete("/delete-character", function (req, res) {
+        const id = req.body.id;
+        if (fs.existsSync(db_file)) {
+            fs.readFile(db_file, "utf8", function (err, data) {
+                if (err) res.json({ msg: err });
+                else {
+                    let libraryData = JSON.parse(data);
+                    libraryData = libraryData.filter(char => char.id !== id);
+                    fs.writeFile(
+                        db_file,
+                        JSON.stringify(libraryData),
+                        function (err) {
+                            if (err)
+                                res.send(
+                                    JSON.stringify({ msg: `Error: ${err}` })
+                                );
+                            else
+                                res.send(
+                                    JSON.stringify({
+                                        msg: "SUCCESS",
+                                        data: libraryData
+                                    })
+                                );
+                        }
+                    );
                 }
             });
         } else {
