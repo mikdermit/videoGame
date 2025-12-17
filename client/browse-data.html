@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Browse Data</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="./js/config.js"></script>
+        <script src="./js/browse-data.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/browse-data.css" />
+    </head>
+
+    <body ng-app="browseDataApp" ng-controller="browseDataCtrl">
+        <section class="header">
+            <div class="title">Browse Data</div>
+
+            <div class="link-container">
+                <a class="link" href="./gameLibrary.html">Home</a>
+                <a class="link" href="./write-data.html">Enter Data</a>
+                <a class="link" href="./view-data.html">View Data</a>
+                <a class="link" href="./browse-data.html">Browse Data</a>
+            </div>
+        </section>
+        <section class="background-image">
+            <div class="dataContainer">
+                <div>
+                    <label for="name">Character Name: </label>
+                    <label style="margin-left: 30px; color: blue" id="name"
+                        >{{obj.name}}</label
+                    >
+                </div>
+                <div>
+                    <label for="world">World: </label>
+                    <label style="margin-left: 30px; color: blue" id="world"
+                        >{{obj.world}}</label
+                    >
+                </div>
+                <div>
+                    <label for="dataCenter">Data Center: </label>
+                    <label
+                        style="margin-left: 30px; color: blue"
+                        id="dataCenter"
+                        >{{obj.dataCenter}}</label
+                    >
+                </div>
+                <div>
+                    <label for="race">Race: </label>
+                    <label style="margin-left: 30px; color: blue" id="race"
+                        >{{obj.race}}</label
+                    >
+                </div>
+                <div>
+                    <label for="grandCompany">Grand Company: </label>
+                    <label
+                        style="margin-left: 30px; color: blue"
+                        id="grandCompany"
+                        >{{obj.grandCompany}}</label
+                    >
+                </div>
+                <div>
+                    <label for="preferredRole">Preferred Role: </label>
+                    <label
+                        style="margin-left: 30px; color: blue"
+                        id="preferredRole"
+                        >{{obj.preferredRole}}</label
+                    >
+                </div>
+                <div>
+                    <label for="preferredClass">Preferred Class: </label>
+                    <label
+                        style="margin-left: 30px; color: blue"
+                        id="preferredClass"
+                        >{{obj.preferredClass}}</label
+                    >
+                </div>
+                <div>
+                    <label for="playstyle">Playstyle: </label>
+                    <label style="margin-left: 30px; color: blue" id="playstyle"
+                        >{{obj.playstyle}}</label
+                    >
+                </div>
+                <div>
+                    <label for="platform">Platform: </label>
+                    <label style="margin-left: 30px; color: blue" id="platform"
+                        >{{obj.platform}}</label
+                    >
+                </div>
+                <div>
+                    <label for="comment">Comment: </label>
+                    <label style="margin-left: 30px; color: blue" id="comment"
+                        >{{obj.comment}}</label
+                    >
+                </div>
+
+                <div style="float: left; margin-top: 30px">
+                    <div style="float: left">
+                        <button
+                            id="previous"
+                            ng-click="changeData(-1)"
+                            ng-hide="hidePrev"
+                        >
+                            &lt&lt&lt Previous
+                        </button>
+                    </div>
+
+                    <div style="float: left">
+                        <button
+                            id="next"
+                            ng-click="changeData(1)"
+                            ng-hide="hideNext"
+                        >
+                            Next &gt&gt&gt
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
