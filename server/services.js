@@ -117,7 +117,7 @@ let services = function (app) {
         }
     });
 
-    app.get("/get-charsByRole", async function (req, res) {
+    app.get("/get-charactersByRole", async function (req, res) {
         //1.  Capture data sent from client (see line 34 in spellsTable.js for JSON object name)
         let preferredRoleValueSentFromClient = req.query.preferredRole;
 

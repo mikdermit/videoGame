@@ -25,6 +25,15 @@
             </section>
             <section class="background-image">
                 <section data-ng-hide="hideTable">
+                    <div style="margin-left: 70px">
+                        <label for="groupby">Character Role:</label>
+                        <select
+                            id="groupby"
+                            data-ng-model="selectedRole"
+                            data-ng-options="role.display for role in roles"
+                            data-ng-change="redrawTable()"
+                        ></select>
+                    </div>
                     <div style="margin: 30px">
                         <table>
                             <tr>
