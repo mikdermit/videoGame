@@ -117,16 +117,16 @@ let services = function (app) {
         }
     });
 
-    app.get("/get-charsByType", async function (req, res) {
+    app.get("/get-charsByRole", async function (req, res) {
         //1.  Capture data sent from client (see line 34 in spellsTable.js for JSON object name)
-        let typeValueSentFromClient = req.query.type;
+        let preferredRoleValueSentFromClient = req.query.preferredRole;
 
         //2.  Filter by the data value sent from the client.
         //       Note: type = "", is sent when ALL is selected.
         let search =
-            typeValueSentFromClient === ""
+            preferredRoleValueSentFromClient === ""
                 ? {}
-                : { type: typeValueSentFromClient };
+                : { preferredRole: preferredRoleValueSentFromClient };
 
         //3. Set up sort by name ascending
         const orderBy = { name: 1 };
@@ -194,107 +194,3 @@ var initializeDatabase = async function () {
 };
 
 module.exports = { services, initializeDatabase };
-
-// const fs = require("fs");
-// const path = require("path");
-// const db_file = path.join(__dirname + "/files/data.txt");
-
-// let services = function (app) {
-//     app.post("/write-character", function (req, res) {
-//         let id = "lib" + Date.now();
-
-//         let characterData = {
-//             id: id,
-//             name: req.body.name,
-//             world: req.body.world,
-//             dataCenter: req.body.dataCenter,
-//             race: req.body.race,
-//             grandCompany: req.body.grandCompany,
-//             preferredRole: req.body.preferredRole,
-//             preferredClass: req.body.preferredClass,
-//             playstyle: req.body.playstyle,
-//             platform: req.body.platform,
-//             comment: req.body.comment
-//         };
-
-//         let libraryData = [];
-
-//         if (fs.existsSync(db_file)) {
-//             fs.readFile(db_file, "utf8", function (err, data) {
-//                 if (err) res.send(JSON.stringify({ msg: err }));
-//                 else {
-//                     libraryData = JSON.parse(data);
-
-//                     libraryData.push(characterData);
-
-//                     fs.writeFile(
-//                         db_file,
-//                         JSON.stringify(libraryData),
-//                         function (err) {
-//                             if (err)
-//                                 res.send(
-//                                     JSON.stringify({ msg: `Error: ${err}` })
-//                                 );
-//                             else res.send(JSON.stringify({ msg: "SUCCESS" }));
-//                         }
-//                     );
-//                 }
-//             });
-//         } else {
-//             libraryData.push(characterData);
-//             fs.writeFile(db_file, JSON.stringify(libraryData), function (err) {
-//                 if (err) res.send(JSON.stringify({ msg: `Error: ${err}` }));
-//                 else res.send(JSON.stringify({ msg: "SUCCESS" }));
-//             });
-//         }
-//     });
-
-//     app.get("/get-characters", function (req, res) {
-//         if (fs.existsSync(db_file)) {
-//             fs.readFile(db_file, "utf8", function (err, data) {
-//                 if (err) res.json({ msg: err });
-//                 else {
-//                     let libraryData = JSON.parse(data);
-//                     res.json({ msg: "SUCCESS", data: libraryData });
-//                 }
-//             });
-//         } else {
-//             characterData = [];
-//             res.json({ msg: "SUCCESS", data: libraryData });
-//         }
-//     });
-//     app.delete("/delete-character", function (req, res) {
-//         const id = req.body.id;
-//         if (fs.existsSync(db_file)) {
-//             fs.readFile(db_file, "utf8", function (err, data) {
-//                 if (err) res.json({ msg: err });
-//                 else {
-//                     let libraryData = JSON.parse(data);
-//                     libraryData = libraryData.filter(char => char.id !== id);
-//                     fs.writeFile(
-//                         db_file,
-//                         JSON.stringify(libraryData),
-//                         function (err) {
-//                             if (err)
-//                                 res.send(
-//                                     JSON.stringify({ msg: `Error: ${err}` })
-//                                 );
-//                             else
-//                                 res.send(
-//                                     JSON.stringify({
-//                                         msg: "SUCCESS",
-//                                         data: libraryData
-//                                     })
-//                                 );
-//                         }
-//                     );
-//                 }
-//             });
-//         } else {
-//             characterData = [];
-//             res.json({ msg: "SUCCESS", data: libraryData });
-//         }
-//     });
-// };
-
-// module.exports = services;

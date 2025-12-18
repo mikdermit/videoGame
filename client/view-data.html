@@ -1,13 +1,18 @@
 <html>
     <head>
         <title>View Data</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./css/view-data.css" />
         <script src="./js/config.js"></script>
         <script src="./js/view-data.js" async></script>
     </head>
 
     <body>
-        <main>
+        <main
+            data-ng-app="viewDataApp"
+            data-ng-controller="viewDataCtrl"
+            data-ng-init="hideForm=true"
+        >
             <section class="header">
                 <div class="title">View Data</div>
 
@@ -19,6 +24,195 @@
                 </div>
             </section>
             <section class="background-image">
+                <section data-ng-hide="hideTable">
+                    <div style="margin: 30px">
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>World</th>
+                                <th>Data Center</th>
+                                <th>Race</th>
+                                <th>Grand Company</th>
+                                <th>Preferred Role</th>
+                                <th>Preferred Class</th>
+                                <th>Playstyle</th>
+                                <th>Platform</th>
+                                <th>Comment</th>
+                            </tr>
+
+                            <tr data-ng-repeat="obj in characters">
+                                <td>{{ obj.name }}</td>
+                                <td>{{ obj.world }}</td>
+                                <td>{{ obj.dataCenter }}</td>
+                                <td>{{ obj.race }}</td>
+                                <td>{{ obj.grandCompany }}</td>
+                                <td>{{ obj.preferredRole }}</td>
+                                <td>{{ obj.preferredClass }}</td>
+                                <td>{{ obj.playstyle }}</td>
+                                <td>{{ obj.platform }}</td>
+                                <td>{{ obj.comment }}</td>
+                                <td>
+                                    <button
+                                        data-ng-click="deleteCharacter(obj['id'])"
+                                    >
+                                        DELETE
+                                    </button>
+                                </td>
+                                <td>
+                                    <button
+                                        data-ng-click="editCharacter($index)"
+                                    >
+                                        EDIT
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                <section class="table-container" data-ng-hide="hideForm">
+                    <div style="font-size: 30px">
+                        <label data-ng-model="id" hidden></label>
+                        <div>
+                            <label for="name">Name: </label>
+                            <input
+                                type="text"
+                                id="name"
+                                data-ng-model="name"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="world">World: </label>
+                            <input
+                                type="text"
+                                id="world"
+                                data-ng-model="world"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="dataCenter">Data Center: </label>
+                            <input
+                                type="text"
+                                id="dataCenter"
+                                data-ng-model="dataCenter"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="race">Race: </label>
+                            <input
+                                type="text"
+                                id="race"
+                                data-ng-model="race"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="grandCompany">Grand Company: </label>
+                            <input
+                                type="text"
+                                id="grandCompany"
+                                data-ng-model="grandCompany"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="preferredRole">Preffered Role: </label>
+                            <input
+                                type="text"
+                                id="preferredRole"
+                                data-ng-model="preferredRole"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="preferredClass"
+                                >Preferred Class:
+                            </label>
+                            <input
+                                type="text"
+                                id="preferredClass"
+                                data-ng-model="preferredClass"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="playstyle">Playstyle: </label>
+                            <input
+                                type="text"
+                                id="playstyle"
+                                data-ng-model="playstyle"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="platform">Platform: </label>
+                            <input
+                                type="text"
+                                id="platform"
+                                data-ng-model="platform"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+                        <div>
+                            <label for="comment">Comment: </label>
+                            <input
+                                type="text"
+                                id="comment"
+                                data-ng-model="comment"
+                                data-ng-change="startNew()"
+                            />
+                        </div>
+
+                        <div style="float: left; margin-top: 30px">
+                            <div
+                                style="
+                                    float: left;
+                                    clear: right;
+                                    margin-left: 30px;
+                                "
+                            >
+                                <button
+                                    id="submit"
+                                    data-ng-click="updateSpell()"
+                                >
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                        <div style="float: left; margin-top: 30px">
+                            <div
+                                style="
+                                    float: left;
+                                    clear: right;
+                                    margin-left: 30px;
+                                "
+                            >
+                                <button
+                                    id="cancelButton"
+                                    data-ng-click="cancelUpdate()"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                        <div
+                            style="
+                                float: left;
+                                clear: left;
+                                margin-top: 20px;
+                                font-size: 24px;
+                                color: green;
+                            "
+                        >
+                            {{addResults}}
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <!-- <section class="background-image">
                 <div id="table-container">
                     <table>
                         <th class="table-title">ID</th>
@@ -36,7 +230,7 @@
                         <tbody id="dataTable"></tbody>
                     </table>
                 </div>
-            </section>
+            </section> -->
         </main>
     </body>
 </html>
