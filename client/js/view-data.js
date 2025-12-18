@@ -32,7 +32,7 @@ app.controller("viewDataCtrl", function ($scope, $http) {
         console.log("redraw");
         $http({
             method: "GET",
-            url: potterURL + "/get-charactersByRole",
+            url: libraryUrl + "/get-charactersByRole",
             params: { preferredRole: role }
         }).then(
             function (response) {
@@ -55,7 +55,7 @@ app.controller("viewDataCtrl", function ($scope, $http) {
         console.log(id);
         $http({
             method: "DELETE",
-            url: potterURL + "/delete-character",
+            url: libraryUrl + "/delete-character",
             params: { id: id }
         }).then(
             function (response) {
@@ -113,7 +113,7 @@ app.controller("viewDataCtrl", function ($scope, $http) {
 
         $http({
             method: "PUT",
-            url: potterURL + "/update-character",
+            url: libraryUrl + "/update-character",
             data: {
                 id: $scope.id,
                 name: $scope.name,
